@@ -11,15 +11,15 @@ semiCircle Dataset
 
 XOR Dataset
 
-![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/new/master/images/)
+![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/blob/master/images/xor.png)
 
 MNIST digits dataset
 
-![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/new/master/images/)
+![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/blob/master/images/MNIST.png)
 
 
 CIFAR-10 Dataset
 
-![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/new/master/images/)
+![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/blob/master/images/cifar10.png)
 
 
