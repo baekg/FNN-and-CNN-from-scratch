@@ -7,7 +7,7 @@ Results:-
 
 semiCircle Dataset
 
-![alt text](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/new/master/images/semiCircle.png)
+![See images/semiCircle.png](https://github.com/chitrank-gupta/FNN-and-CNN-from-scratch/blob/master/images/semiCircle.png)
 
 XOR Dataset
 
