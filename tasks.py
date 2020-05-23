@@ -1,11 +1,36 @@
 import nn
 import numpy as np
 import sys
-
+import random
 from util import *
 from visualize import *
 from layers import *
+import math
+def plots(num_images,images, classes,shape,transpose=None):
+	columns = int(np.sqrt(num_images))
+	rows = math.ceil(num_images*1.0/columns)
+	fig = plt.figure(figsize=(9, 13))
+	
+	ax = []
 
+	for i in range(num_images):
+		if transpose: 
+			img = np.transpose(np.array(images[i]).reshape(shape),transpose)
+		else: 
+			img = np.array(images[i]).reshape(shape)
+    	# create subplot and append to ax
+		ax.append( fig.add_subplot(rows, columns, i+1) )
+		ax[-1].set_title(str(classes[i]),pad=-5,fontweight='bold',fontsize='large',color="red")  # set title
+		plt.axis("off")
+		plt.imshow(img)
+
+	# do extra plots on selected axes/subplots
+	# note: index starts with 0
+	# ax[2].plot(xs, 3*ys)
+	# ax[19].plot(ys**2, xs)
+	# plt.axis("off")
+	plt.tight_layout()
+	plt.show()  # finally, render the plot
 
 # XTrain - List of training input Data
 # YTrain - Corresponding list of training data labels
@@ -85,6 +110,13 @@ def taskMnist():
 	nn1.train(XTrain, YTrain, XVal, YVal, False, True)
 	pred, acc  = nn1.validate(XTest, YTest)
 	print('Test Accuracy ',acc)
+	pic_idx=random.sample(range(len(XTest)),10)
+	pictures=[XTest[i] for i in pic_idx]
+	classes=[pred[i] for i in pic_idx]
+	plots(10,pictures,classes,(28,28))
+
+
+
 	return nn1, XTest, YTest
 
 def taskCifar10():	
@@ -105,7 +137,7 @@ def taskCifar10():
 	# ###############################################
 	# # TASK 2.4 - YOUR CODE HERE
 	# raise NotImplementedError	
-	nn1=nn.NeuralNetwork(10,0.001,10,33)
+	nn1=nn.NeuralNetwork(10,0.001,100,33)
 	nn1.addLayer(ConvolutionLayer([3,32,32],[12,12],8,4,"relu"))
 	nn1.addLayer(AvgPoolingLayer([8,6,6], [2,2], 2))
 	nn1.addLayer(FlattenLayer())
@@ -113,9 +145,14 @@ def taskCifar10():
 	nn1.addLayer(FullyConnectedLayer(72,10,"softmax"))
 
 	###################################################
-	return nn1,  XTest, YTest, modelName # UNCOMMENT THIS LINE WHILE SUBMISSION
+	# return nn1,  XTest, YTest, modelName # UNCOMMENT THIS LINE WHILE SUBMISSION
 
 
 	nn1.train(XTrain, YTrain, XVal, YVal, True, True, loadModel=0, saveModel=True, modelName=modelName)
 	pred, acc = nn1.validate(XTest, YTest)
 	print('Test Accuracy ',acc)
+	pic_idx=random.sample(range(len(XTest)),10)
+	pictures=[XTest[i] for i in pic_idx]
+	tags=["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"]
+	classes=[tags[pred[i]] for i in pic_idx]
+	plots(10,pictures,classes,(3,32,32),(1,2,0))
